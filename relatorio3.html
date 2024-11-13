@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório - Sensor Ultrassonico</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <div class="container">
+        <h1>Relatório: Sensor Ultrassonico</h1>
+
+        <div class="section">
+            <h2>Sumário</h2>
+            <ul>
+                <li>Introdução</li>
+                <li>Objetivos</li>
+                <li>Materiais Utilizados</li>
+                <li>Diagrama do Circuito</li>
+                <li>Código Fonte</li>
+                <li>Procedimentos</li>
+                <li>Resultados</li>
+                <li>Discussão</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Introdução</h2>
+            <p>Neste experimento foi implementado um sistema de sensor ultrassonico para ligar um led</p>
+        </div>
+
+        <div class="section">
+            <h2>Objetivos</h2>
+            <li>Desenvolver um led ligado por sensor ultrassonico.</li>
+            <li>Garantir que todas as ligações e configurações necessárias do hardware estejam completas.</li>
+            <li>Verificar o funcionamento do semáforo conforme o código C++ desenvolvido.</li>
+        </div>
+
+        <div class="section">
+            <h2>Materiais Utilizados</h2>
+            <ul>
+                <li>Arduino Uno</li>
+                <li>LEDs</li>
+                <li>Resistores</li>
+                <li>Placa de ensaio (breadboard)</li>
+                <li>Fios de conexão</li>
+                <li>Computador com IDE Arduino instalada</li>
+                <li>Sensor ultrassonico</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Diagrama do Circuito</h2>
+            <div class="diagram">
+                <img src="diagramasensorluz,png.png" alt="" />
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Código Fonte</h2>
+            <code>
+                
+                int trigger = 8;
+                int echo = 7;
+                int led = 5;
+                float distancia;
+                float tempo;
+
+                void setup()
+                {
+                    pinMode(trigger, OUTPUT);
+                    pinMode(echo, INPUT);
+                    Serial.begin(9600);
+                    pinMode(led, OUTPUT);
+                }
+
+                void loop()
+                {
+                    digitalWrite(led, HIGH);
+                    digitalWrite(trigger, HIGH);
+                    delayMicroseconds(2);
+                    digitalWrite(trigger, LOW);
+                    delayMicroseconds(10);
+  
+                    tempo = pulseIn(echo, HIGH);
+  
+                    distancia = (0.0344 * tempo) / 2;
+  
+                    Serial.print("distancia");
+                    Serial.print(distancia);
+                    Serial.println("cm");
+  
+                    if(distancia >= 40){
+                        digitalWrite(led, HIGH);
+                    } else{
+                        digitalWrite(led, LOW);
+                    }
+                }
+            </code>
+        </div>
+
+        <div class="section">
+            <h2>Procedimentos</h2>
+            <li>Realizar a montagem do circuito na placa de ensaio conforme o diagrama.</li>
+            <li>Realizar a montagem do circuito na placa de ensaio conforme o diagrama.</li>
+            <li>Verificar todas as conexões dos LEDs e resistores com os pinos correspondentes no Arduino.</li>
+            <li>Carregar o código C no Arduino utilizando a IDE Arduino.</li>
+        </div>
+
+        <div class="section">
+            <h2>Resultados</h2>
+            <p>O projeto teve sucesso, com algum tipo de movimento em frente ao sensor, o led ligava ao depender da distancia do objeto que o sensor captava.</p>
+        </div>
+
+        <div class="section">
+            <h2>Discussão</h2>
+            <p>Com o sucesso do projeto, foi possivel analisar e debater sobre as diversas utilidades do sensor.</p>
+        </div>
+
+    </div>
+
+        <div class="section">
+            <h2><a href="index.html">Voltar para página inicial</a></h2>
+        </div>
+</body>
+</html>
