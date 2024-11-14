@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório - Botão</title>
+    <title>Relatório - Sensor de cor</title>
     <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="container">
-        <h1>Relatório: Botão</h1>
+        <h1>Relatório: Sensor de cor</h1>
 
         <div class="section">
             <h2>Sumário</h2>
@@ -26,12 +26,12 @@
 
         <div class="section">
             <h2>Introdução</h2>
-            <p>Teste com uso de botão</p>
+            <p>Experimento de implementação de sistema no qual liga led ao captar cor escura.</p>
         </div>
 
         <div class="section">
             <h2>Objetivos</h2>
-            <li>Desenvolver um programa que utilize um botão para ligar o led.</li>
+            <li>Utilizar e testar sensor de cores.</li>
             <li>Garantir que todas as ligações e configurações necessárias do hardware estejam completas.</li>
             <li>Verificar o funcionamento do semáforo conforme o código C++ desenvolvido.</li>
         </div>
@@ -40,19 +40,18 @@
             <h2>Materiais Utilizados</h2>
             <ul>
                 <li>Arduino Uno</li>
-                <li>LEDs</li>
-                <li>Resistores</li>
                 <li>Placa de ensaio (breadboard)</li>
                 <li>Fios de conexão</li>
                 <li>Computador com IDE Arduino instalada</li>
-                <li>Botão</li>
+                <li>Sensor de cores</li>
             </ul>
         </div>
 
         <div class="section">
             <h2>Diagrama do Circuito</h2>
             <div class="diagram">
-                <img src="arduinobotao.png" alt="" />
+                <img src="sensorDesligado.png" alt="Sensor ligado" />
+                <img src="sensorLigado.png" alt="Sensor ligado" />
             </div>
         </div>
 
@@ -60,23 +59,32 @@
             <h2>Código Fonte</h2>
             <code>
                 
-                cons int ledPin = 9;
-                const int buttonPin = 2;
-                
-                void setup() {
-                    pinMode(ledPin, OUTPUT);
-                    pinMode(buttonPin, INPUT_PULLUP);
-                }
+            const int sensorPin = 7;
+            const int redPin = 6;
+            const int greenPin = 3;
+            const int bluePin = 10;
 
-                void loop() {
-                    int buttonState = digitalRead(buttonPin);
+            void setup() {
+                pinMode(sensorPin, INPUT);
+                pinMode(redPin, OUTPUT);
+                pinMode(greenPin, OUTPUT);
+                pinMode(bluePin, OUTPUT);
 
-                    if (buttonState == LOW) {  
-                        digitalWrite(ledPin, LOW); 
-                    } else { 
-                        digitalWrite(ledPin, HIGH);
-                    }
-                }
+                Serial.begin(9600);
+            }
+
+            void loop() {
+            int sensorValue = digitalRead(sensorPin);
+
+            if (sensorValue == LOW) {
+                digitalWrite(redPin, HIGH);
+                digitalWrite(greenPin, LOW);
+                digitalWrite(bluePin, LOW);
+            } else {
+                digitalWrite(redPin, LOW);
+                digitalWrite(greenPin, LOW);
+                digitalWrite(bluePin, LOW);}
+            }
             </code>
         </div>
 
@@ -84,13 +92,18 @@
             <h2>Procedimentos</h2>
             <li>Realizar a montagem do circuito na placa de ensaio conforme o diagrama.</li>
             <li>Realizar a montagem do circuito na placa de ensaio conforme o diagrama.</li>
-            <li>Verificar todas as conexões dos LEDs e resistores com os pinos correspondentes no Arduino.</li>
             <li>Carregar o código C no Arduino utilizando a IDE Arduino.</li>
+            <li>Testar em folha branca, com riscos graves de cor preta para que o led ligue.</li>
         </div>
 
         <div class="section">
             <h2>Resultados</h2>
-            <p>Sucesso, o led responde corretamente ao toque do botão.</p>
+            <p>Ao final o experimento ocorreu corretamente, com o led verde ligando apenas ao ser colocado por cima do desenho preto.</p>
+        </div>
+
+        <div class="section">
+            <h2>Discussão</h2>
+            <p>O experimento acabou por demonstrar a eficiência e resultados dos sensores para quaisquer tipo de projeto/utilidade.</p>
         </div>
 
     </div>
